@@ -102,7 +102,6 @@ int aknakereso()//logics of the game
 
 int main()
 {
-    int asdd;
     setlocale(LC_ALL, "");
     srand((unsigned)time(NULL));
     system("Title GAMEZLEL");
