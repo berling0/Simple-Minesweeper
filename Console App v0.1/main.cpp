@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int megjelol, akna, jatekos, pont = 0;
+int megjelol, akna, pont = 0;
 char tomb[10] = { '-', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 bool jatekON = true;
 
