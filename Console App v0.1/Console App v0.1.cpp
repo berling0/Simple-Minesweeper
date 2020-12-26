@@ -4,25 +4,24 @@
 #include <windows.h>
 #include <time.h>
 #include <locale.h>
-
 #include <stdlib.h>
 
 using namespace std;
 
 int megjelol, akna, pont = 0;
-char tomb[10] = { '-', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+char tomb[9] = { '-', '-', '-', '-', '-', '-', '-', '-', '-'};
 bool jatekON = true;
 
-void palya()//rendering the 3x3 board
+void palya()
 {
     system("cls");
     cout << ".M.i.n.e." << endl;
     cout << "-Sweeper-" << endl;
     cout << "Points: " << pont << endl;
     cout << "---------" << endl;
-    cout << "| " << tomb[1] << " " << tomb[2] << " " << tomb[3] << " |" << endl;
-    cout << "| " << tomb[4] << " " << tomb[5] << " " << tomb[6] << " |" << endl;
-    cout << "| " << tomb[7] << " " << tomb[8] << " " << tomb[9] << " |" << endl;
+    cout << "| " << tomb[0] << " " << tomb[1] << " " << tomb[2] << " |" << endl;
+    cout << "| " << tomb[3] << " " << tomb[4] << " " << tomb[5] << " |" << endl;
+    cout << "| " << tomb[6] << " " << tomb[7] << " " << tomb[8] << " |" << endl;
     cout << "---------" << endl;
 }
 
@@ -37,7 +36,7 @@ void exit()
     this_thread::sleep_for(chrono::milliseconds(5000));
 }
 
-int aknakereso()//logics of the game
+int aknakereso()
 {
     akna = (rand() % 9) + 1;
     char jelol;
@@ -50,31 +49,31 @@ int aknakereso()//logics of the game
         switch (megjelol)
         {
         case 1:
-            tomb[1] = jelol;
+            tomb[0] = jelol;
             break;
         case 2:
-            tomb[2] = jelol;
+            tomb[1] = jelol;
             break;
         case 3:
-            tomb[3] = jelol;
+            tomb[2] = jelol;
             break;
         case 4:
-            tomb[4] = jelol;
+            tomb[3] = jelol;
             break;
         case 5:
-            tomb[5] = jelol;
+            tomb[4] = jelol;
             break;
         case 6:
-            tomb[6] = jelol;
+            tomb[5] = jelol;
             break;
         case 7:
-            tomb[7] = jelol;
+            tomb[6] = jelol;
             break;
         case 8:
-            tomb[8] = jelol;
+            tomb[7] = jelol;
             break;
         case 9:
-            tomb[9] = jelol;
+            tomb[8] = jelol;
             break;
         default:
             pont = -1;
@@ -86,14 +85,21 @@ int aknakereso()//logics of the game
             jatekON = false;
             exit();
         }
-        if (megjelol != akna)//gives 1 point for not hitting the mine
+        if (megjelol != akna)
         {
             pont++;
         }
-        if (megjelol > 9 || megjelol< 0)
+        if (megjelol > 9 || megjelol < 0)
         {
             cout << "This is not a valid field";
             this_thread::sleep_for(chrono::milliseconds(1000));
+        }
+        if (pont == 8)
+        {
+            jatekON = false;
+            system("cls");
+            cout << "You found all the correct fields "<< endl << "You won the game!" << endl;
+            this_thread::sleep_for(chrono::milliseconds(5000));
         }
     } while (jatekON == true);
 
@@ -102,6 +108,7 @@ int aknakereso()//logics of the game
 
 int main()
 {
+    int asdd;
     setlocale(LC_ALL, "");
     srand((unsigned)time(NULL));
     system("Title GAMEZLEL");
